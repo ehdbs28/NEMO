@@ -4,5 +4,8 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
-    public abstract void Reset();
+    public float _shotDelay;
+    public float _shotShakeValue;
+    
+    public abstract void Shot();
 }
