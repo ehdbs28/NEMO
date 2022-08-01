@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
     private float _yRotate, _yRotateMove;
     private float _rotateSpeed = 500.0f;
 
+    private float _jumpPower = 5f;
+    private int _jumpCount = 0;
+    private int _maxJumpCount = 1;
+    private bool _isJump = false;
+
     private void Start()
     {
         _rigid = GetComponent<Rigidbody>();
@@ -20,6 +25,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Rotation();
+        Jump();
     }
 
     private void LateUpdate()
@@ -34,7 +40,18 @@ public class Player : MonoBehaviour
 
         Vector3 dir = new Vector3(x, 0, z);
         dir = transform.TransformDirection(dir);
-        _rigid.MovePosition(transform.position + dir.normalized * _speed * Time.deltaTime);
+        _rigid.position += dir.normalized * _speed * Time.deltaTime;
+    }
+
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && _jumpCount < _maxJumpCount && !_isJump)
+        {
+            _jumpCount++;
+            _isJump = true;
+
+            _rigid.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+        }
     }
 
     private void Rotation()
@@ -44,5 +61,17 @@ public class Player : MonoBehaviour
         _yRotate = transform.eulerAngles.y + _yRotateMove;
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, _yRotate, 0);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Platform"))
+        {
+            if(collision.contacts[0].normal.y >= 0.7f)
+            {
+                _jumpCount = 0;
+                _isJump = false;
+            }
+        }
     }
 }
