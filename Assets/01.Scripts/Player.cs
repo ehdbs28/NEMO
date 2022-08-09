@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Rigidbody _rigid;
+    private Gun _gun;
 
     private float _yRotate, _yRotateMove;
     private float _rotateSpeed = 500.0f;
@@ -26,11 +27,21 @@ public class Player : MonoBehaviour
         Move();
         Rotation();
         Jump();
+        Attack();
     }
 
     private void LateUpdate()
     {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 0.484f, transform.position.z);
+    }
+
+    private void Attack()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            _gun = GunSwapManager.Instance.CurrentGun;
+            _gun.Fire();
+        }
     }
 
     private void Move()

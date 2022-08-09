@@ -14,6 +14,10 @@ public class GunSwapManager : MonoBehaviour
     private List<Gun> _gunList = new List<Gun>();
 
     private Gun _currentGun;
+    public Gun CurrentGun
+    {
+        get => _currentGun;
+    }
 
     private void Awake()
     {
