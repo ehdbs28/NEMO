@@ -16,5 +16,5 @@ MonoBehaviour:
   startAmmoRemain: 100
   maxCapacity: 25
   reloadTime: 3
-  shotDelay: 0.1
+  shotDelay: 0.05
   fireDistance: 50

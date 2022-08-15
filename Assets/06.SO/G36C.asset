@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: G36C
   m_EditorClassIdentifier: 
   damage: 5
-  startAmmoRemain: 100
+  startAmmoRemain: 9999
   maxCapacity: 25
   reloadTime: 3
-  shotDelay: 0.3
+  shotDelay: 0.12
   fireDistance: 50

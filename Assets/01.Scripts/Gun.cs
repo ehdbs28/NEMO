@@ -19,7 +19,9 @@ public class Gun : MonoBehaviour
     public State state { get; set; }
 
     private Transform _firePos;
+    private Transform _fxPos;
     private LineRenderer _line;
+    private BulletFx _bulletFx;
 
     private float _lastShotTime;
 
@@ -33,6 +35,7 @@ public class Gun : MonoBehaviour
     {
         _anim = GameObject.Find("Player/Hands").GetComponent<Animator>();
         _firePos = transform.Find("FirePos").transform;
+        _fxPos = transform.Find("FxPos").transform;
         _line = GetComponent<LineRenderer>();
         _startAmmo = _gunData.startAmmoRemain;
         _maxAmmo = _gunData.maxCapacity;
@@ -60,6 +63,9 @@ public class Gun : MonoBehaviour
     private void Shot()
     {
         _currentAmmo--;
+        _bulletFx = PoolManager.Instance.Pop("BulletFx") as BulletFx;
+        _bulletFx.transform.position = _fxPos.position;
+        _bulletFx.transform.rotation = _fxPos.rotation;
 
         RaycastHit hit;
         Vector3 hitPos = Vector3.zero;
