@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if(Instance != null)
         {
             Debug.LogError("Multiple GameManager Instance has running !");

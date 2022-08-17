@@ -37,9 +37,7 @@ public class Gun : MonoBehaviour
         _firePos = transform.Find("FirePos").transform;
         _fxPos = transform.Find("FxPos").transform;
         _line = GetComponent<LineRenderer>();
-        _startAmmo = _gunData.startAmmoRemain;
-        _maxAmmo = _gunData.maxCapacity;
-        _currentAmmo = _maxAmmo;
+        InitSetting();
     }
 
     private void Update()
@@ -48,6 +46,13 @@ public class Gun : MonoBehaviour
         {
             _state = State.Empty;
         }
+    }
+
+    public void InitSetting()
+    {
+        _startAmmo = _gunData.startAmmoRemain;
+        _maxAmmo = _gunData.maxCapacity;
+        _currentAmmo = _maxAmmo;
     }
 
     public void Fire(Action OnShotAnim)
@@ -84,7 +89,7 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
-        if (_state == State.Empty && _startAmmo >= 0)
+        if (_state == State.Empty && _startAmmo > 0)
         {
             _state = State.Reloading;
         }
@@ -92,14 +97,17 @@ public class Gun : MonoBehaviour
 
     public void ReloadComplete() //Animation Event
     {
-        float decreaseAmmo;
+        if(_startAmmo > 0)
+        {
+            float decreaseAmmo;
 
-        if (_startAmmo - _maxAmmo >= _maxAmmo) decreaseAmmo = _maxAmmo - _currentAmmo;
-        else decreaseAmmo = _startAmmo - _currentAmmo;
+            if (_startAmmo - _maxAmmo >= _maxAmmo) decreaseAmmo = _maxAmmo - _currentAmmo;
+            else decreaseAmmo = _startAmmo - _currentAmmo;
 
-        _currentAmmo += decreaseAmmo;
-        _startAmmo -= decreaseAmmo;
-        _state = State.Ready;
+            _currentAmmo += decreaseAmmo;
+            _startAmmo -= decreaseAmmo;
+            _state = State.Ready;
+        }
     }
 
     IEnumerator ShotEffect(Vector3 hitPos)
