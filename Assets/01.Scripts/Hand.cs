@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
+    [SerializeField] private GameObject _light;
+
     private Gun _gun;
     private Animator _anim;
 
@@ -17,9 +19,23 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
+        Aiming();   
         HandRotate();
         Attack();
         Reload();
+    }
+
+    private void Aiming()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            _anim.SetBool("IsAiming", true);
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            _anim.SetBool("IsAiming", false);
+        }
+        _light.SetActive(Input.GetMouseButton(1));
     }
 
     private void Attack()

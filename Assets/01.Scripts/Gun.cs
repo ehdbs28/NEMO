@@ -14,7 +14,6 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GunInfo _gunData;
     
-    private Animator _anim;
     private State _state;
     public State state { get; set; }
 
@@ -30,10 +29,11 @@ public class Gun : MonoBehaviour
     private float _maxAmmo;
     private float _currentAmmo;
     public float CurrentAmmo { get => _currentAmmo; }
+    private bool _isAiming = false;
+    public bool IsAiming { get => _isAiming; set => _isAiming = value; }
 
     private void Awake()
     {
-        _anim = GameObject.Find("Player/Hands").GetComponent<Animator>();
         _firePos = transform.Find("FirePos").transform;
         _fxPos = transform.Find("FxPos").transform;
         _line = GetComponent<LineRenderer>();

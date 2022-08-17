@@ -10693,7 +10693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &980681919
 Transform:
   m_ObjectHideFlags: 0
@@ -10721,10 +10721,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 2.8
+  m_Intensity: 10
   m_Range: 272.13
-  m_SpotAngle: 4.2
-  m_InnerSpotAngle: 2.3
+  m_SpotAngle: 5.1
+  m_InnerSpotAngle: 1.4
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -13909,7 +13909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283421548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.41, z: 0.225}
+  m_LocalPosition: {x: 0, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13934,6 +13934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c383a633d2252f7488e06eacaaf5b962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 980681918}
 --- !u!95 &1283421551
 Animator:
   serializedVersion: 4
