@@ -25,5 +25,6 @@ public class GameManager : MonoBehaviour
         }
 
         GunSwapManager.Instance = gameObject.GetComponent<GunSwapManager>();
+        CameraManager.Instance = gameObject.AddComponent<CameraManager>();
     }
 }

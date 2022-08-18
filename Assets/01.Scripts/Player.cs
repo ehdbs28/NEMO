@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 0.484f, transform.position.z);
+        GameObject.Find("MainCam").transform.position = new Vector3(transform.position.x, transform.position.y + 0.484f, transform.position.z);
     }
 
     private void Move()

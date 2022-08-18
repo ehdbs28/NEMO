@@ -68,6 +68,9 @@ public class Gun : MonoBehaviour
     private void Shot()
     {
         _currentAmmo--;
+
+        CameraManager.Instance.Shake(1, 0.3f);
+
         _bulletFx = PoolManager.Instance.Pop("BulletFx") as BulletFx;
         _bulletFx.transform.position = _fxPos.position;
         _bulletFx.transform.rotation = _fxPos.rotation;
