@@ -1,32 +1,45 @@
 using System;
 using UnityEngine;
 
-public class Entity : MonoBehaviour, IDamage
+public class Entity : Poolable, IDamage
 {
-    public float startHealth = 100f;
-    public float Health { get; protected set; }
-    public bool Dead { get; protected set; }
-    public event Action OnDeath;
+    public float _startHealth = 100f;
+    public float _health { get; protected set; }
+    public bool _dead { get; protected set; }
+    public Action OnDie = null;
 
     protected virtual void OnEnable()
     {
-        Dead = false;
-        Health = startHealth;
+        _dead = false;
+        _health = _startHealth;
     }
 
-    public void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
+    public virtual void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
-        Health -= damage;
+        _health -= damage;
 
-        if(Health <= 0 && !Dead)
+        if(_health <= 0 && !_dead)
         {
             Die();
         }
     }
 
+    public void Heal(float heal)
+    {
+        if (!_dead)
+        {
+            _health += heal;
+        }
+    }
+
     public virtual void Die()
     {
-        OnDeath?.Invoke();
-        Dead = true;
+        OnDie?.Invoke();
+        _dead = true;
+    }
+
+    public override void Reset()
+    {
+        
     }
 }

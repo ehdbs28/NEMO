@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ceeb25df822fc44d9c90aa65126287a, type: 3}
   m_Name: G36C
   m_EditorClassIdentifier: 
-  damage: 3
-  startAmmoRemain: 9999
-  maxCapacity: 25
+  damage: 5
+  startAmmoRemain: 300
+  maxCapacity: 50
   reloadTime: 3
-  shotDelay: 0.12
+  shotDelay: 0.05
   fireDistance: 50

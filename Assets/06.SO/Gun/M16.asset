@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ceeb25df822fc44d9c90aa65126287a, type: 3}
   m_Name: M16
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   startAmmoRemain: 100
-  maxCapacity: 25
+  maxCapacity: 20
   reloadTime: 3
   shotDelay: 0.15
   fireDistance: 50

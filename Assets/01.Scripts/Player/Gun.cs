@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     private Transform _fxPos;
     private LineRenderer _line;
     private BulletFx _bulletFx;
+    private HitFx _hitFx;
 
     private float _lastShotTime;
 
@@ -55,17 +56,17 @@ public class Gun : MonoBehaviour
         _currentAmmo = _maxAmmo;
     }
 
-    public void Fire(Action OnShotAnim)
+    public void Fire(Action OnShotAnim, LayerMask targetLayer)
     {
         if(_state == State.Ready && Time.time >= _lastShotTime + _gunData.shotDelay && _currentAmmo != 0)
         {
             _lastShotTime = Time.time;
-            Shot();
+            Shot(targetLayer);
             OnShotAnim?.Invoke();
         }
     }
 
-    private void Shot()
+    private void Shot(LayerMask targetLayer)
     {
         _currentAmmo--;
 
@@ -78,14 +79,23 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         Vector3 hitPos = Vector3.zero;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, _gunData.fireDistance) && hit.transform.CompareTag("Platform"))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, _gunData.fireDistance, targetLayer))
         {
             hitPos = hit.point;
+
+            Monster monster = hit.transform.GetComponent<Monster>();
+            if(monster != null && !monster._dead)
+            {
+                monster.OnDamage(GunSwapManager.Instance.CurrentGun._gunData.damage, hitPos, hit.normal);
+            }
         }
         else
         {
             hitPos = Camera.main.transform.position + Camera.main.transform.forward * _gunData.fireDistance;
         }
+
+        _hitFx = PoolManager.Instance.Pop("HitFx") as HitFx;
+        _hitFx.transform.position = hitPos;
 
         StartCoroutine(ShotEffect(hitPos));
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     [SerializeField] private GameObject _light;
+    [SerializeField] private LayerMask _targetLayer;
 
     private Gun _gun;
     private Animator _anim;
@@ -44,7 +45,7 @@ public class Hand : MonoBehaviour
         {
             _gun = GunSwapManager.Instance.CurrentGun;
 
-            _gun.Fire(() => { _anim.SetTrigger("IsAttack"); });
+            _gun.Fire(() => { _anim.SetTrigger("IsAttack"); }, _targetLayer);
         }
     }
 

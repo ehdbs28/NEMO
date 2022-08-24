@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ceeb25df822fc44d9c90aa65126287a, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  damage: 7
+  damage: 10
   startAmmoRemain: 100
-  maxCapacity: 25
+  maxCapacity: 20
   reloadTime: 3
-  shotDelay: 0.05
+  shotDelay: 0.1
   fireDistance: 50

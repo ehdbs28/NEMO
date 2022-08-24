@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ceeb25df822fc44d9c90aa65126287a, type: 3}
   m_Name: SCAR-H
   m_EditorClassIdentifier: 
-  damage: 5
-  startAmmoRemain: 100
-  maxCapacity: 25
+  damage: 7
+  startAmmoRemain: 250
+  maxCapacity: 30
   reloadTime: 3
   shotDelay: 0.1
   fireDistance: 50

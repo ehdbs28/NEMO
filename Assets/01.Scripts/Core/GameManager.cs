@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Poolable> _poolingList;
 
+    private bool _gameOver = false;
+    public bool GameOver { get => _gameOver; set => _gameOver = value; }
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -26,5 +29,7 @@ public class GameManager : MonoBehaviour
 
         GunSwapManager.Instance = gameObject.GetComponent<GunSwapManager>();
         CameraManager.Instance = gameObject.AddComponent<CameraManager>();
+        UIManager.Instance = gameObject.GetComponent<UIManager>();
+        MonsterSpawnManager.Instance = gameObject.GetComponent<MonsterSpawnManager>();
     }
 }
