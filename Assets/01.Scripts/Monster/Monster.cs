@@ -40,10 +40,7 @@ public class Monster : Entity
         _damage = monsterData.damage;
         _navMeshAgent.speed = monsterData.speed;
         transform.localScale = monsterData.size;
-    }
 
-    private void Start()
-    {
         StartCoroutine(UpdatePath());
     }
 
@@ -89,14 +86,7 @@ public class Monster : Entity
     {
         base.Die();
 
-        Collider[] monsterColliders = GetComponents<Collider>();
-        foreach(Collider collider in monsterColliders)
-        {
-            collider.enabled = false;
-        }
-
         _navMeshAgent.isStopped = true;
-        _navMeshAgent.enabled = false;
 
         _anim.SetTrigger("IsDie");
     }
