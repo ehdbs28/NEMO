@@ -75,4 +75,16 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Item"))
+        {
+            Item item = other.transform.GetComponent<Item>();
+            if(item != null)
+            {
+                item.UseItem();
+            }
+        }
+    }
 }

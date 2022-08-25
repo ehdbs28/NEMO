@@ -43,7 +43,7 @@ public class Hand : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            _gun = GunSwapManager.Instance.CurrentGun;
+            _gun = GunManager.Instance.CurrentGun;
 
             _gun.Fire(() => { _anim.SetTrigger("IsAttack"); }, _targetLayer);
         }
@@ -53,7 +53,7 @@ public class Hand : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _gun = GunSwapManager.Instance.CurrentGun;
+            _gun = GunManager.Instance.CurrentGun;
             if (_gun.state == Gun.State.Reloading && _gun.StartAmmo <= 0) return;
 
             _anim.SetBool("IsReloading", true);
@@ -63,7 +63,7 @@ public class Hand : MonoBehaviour
 
     public void ReloadComplete() //Animation Event
     {
-        _gun = GunSwapManager.Instance.CurrentGun;
+        _gun = GunManager.Instance.CurrentGun;
         _gun.ReloadComplete();
         _anim.SetBool("IsReloading", false);
     }

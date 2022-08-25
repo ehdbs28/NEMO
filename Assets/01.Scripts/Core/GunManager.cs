@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunSwapManager : MonoBehaviour
+public class GunManager : MonoBehaviour
 {
-    public static GunSwapManager Instance = null;
+    public static GunManager Instance = null;
 
     [SerializeField] private Gun _ak47;
     [SerializeField] private Gun _scarH;

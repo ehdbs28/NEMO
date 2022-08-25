@@ -6,11 +6,13 @@ public class MonsterSpawnManager : MonoBehaviour
 {
     public static MonsterSpawnManager Instance = null;
 
+    [SerializeField] private MonsterData[] _bossDatas;
     [SerializeField] private MonsterData[] _monsterDatas;
     [SerializeField] private Transform[] _spawnPoints;
 
     private List<Monster> _monsterList = new List<Monster>();
     private int _wave;
+    public int Wave { get => _wave; }
 
     private bool _isWaving = false;
     public bool IsWaving { get => _isWaving; set => _isWaving = value; }
@@ -40,6 +42,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
         int spawnCount = Mathf.RoundToInt(_wave * 1.5f);
 
+        if(_wave % 5 == 0) { CreateBoss(); }
         for(int i = 0; i < spawnCount; i++)
         {
             CreateMonster();
@@ -60,5 +63,23 @@ public class MonsterSpawnManager : MonoBehaviour
 
         monster.OnDie += () => _monsterList.Remove(monster);
         monster.OnDie += () => UIManager.Instance.AddScore(100);
+        monster.OnDie += () => ItemManager.Instance.CreateItem("CoinItem", monster.transform.position, monster.transform.rotation);
+    }
+
+    private void CreateBoss()
+    {
+        MonsterData bossData = _bossDatas[Random.Range(0, _bossDatas.Length)];
+        Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+
+        Monster boss = PoolManager.Instance.Pop("Boss") as Monster;
+        boss.transform.position = spawnPoint.position;
+        boss.transform.rotation = spawnPoint.rotation;
+
+        boss.SetUp(bossData);
+        _monsterList.Add(boss);
+
+        boss.OnDie += () => _monsterList.Remove(boss);
+        boss.OnDie += () => UIManager.Instance.AddScore(1000);
+        boss.OnDie += () => ItemManager.Instance.CreateItem("CoinItem", boss.transform.position, boss.transform.rotation);
     }
 }

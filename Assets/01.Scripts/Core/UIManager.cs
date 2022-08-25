@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        _waveTxt.text = $"F 키를 누르면 웨이브가 시작됩니다.\n다음웨이브:{ MonsterSpawnManager.Instance.Wave + 1}";
         _waveTxt.gameObject.SetActive(MonsterSpawnManager.Instance.IsWaving ? false : true);
         _timeTxt.text = $"{_hour.ToString("D2")}:{_minute.ToString("D2")}:{_second.ToString("D2")}";
         _scoreTxt.text = $"{_score.ToString("D5")}";

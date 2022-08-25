@@ -41,6 +41,8 @@ public class Monster : Entity
         _navMeshAgent.speed = monsterData.speed;
         transform.localScale = monsterData.size;
 
+        base.OnEnable();
+
         StartCoroutine(UpdatePath());
     }
 

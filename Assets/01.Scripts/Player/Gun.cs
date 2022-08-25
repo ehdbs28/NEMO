@@ -86,7 +86,7 @@ public class Gun : MonoBehaviour
             Monster monster = hit.transform.GetComponent<Monster>();
             if(monster != null && !monster._dead)
             {
-                monster.OnDamage(GunSwapManager.Instance.CurrentGun._gunData.damage, hitPos, hit.normal);
+                monster.OnDamage(GunManager.Instance.CurrentGun._gunData.damage, hitPos, hit.normal);
             }
         }
         else
