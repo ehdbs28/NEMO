@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,5 +55,9 @@ public class GameManager : MonoBehaviour
             bar.SetActive(MonsterSpawnManager.Instance.IsWaving);
         }
         _chestAnim.SetBool("IsShop", _isShop);
+        if(Input.GetKeyDown(KeyCode.R) && _gameOver)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

@@ -27,7 +27,7 @@ public class DamageUp : SellAble
         {
             StartCoroutine(SellSuccess());
             ItemManager.Instance.CoinCount -= _price;
-            PlayerManager.Instance.UpIncrease("Damage", 20);
+            PlayerManager.Instance.UpIncrease("Damage", 0.2f);
             GunManager.Instance.CurrentGun.InitSetting();
 
             _price += 5;

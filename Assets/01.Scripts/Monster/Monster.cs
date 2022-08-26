@@ -36,8 +36,9 @@ public class Monster : Entity
 
     public void SetUp(MonsterData monsterData)
     {
-        _startHealth = monsterData.health;
-        _damage = monsterData.damage;
+        float increase = gameObject.name == "Boss" ? (MonsterSpawnManager.Instance.Wave / 5) / 10 : MonsterSpawnManager.Instance.Wave / 10;
+        _startHealth = monsterData.health * increase;
+        _damage = monsterData.damage * increase;
         _navMeshAgent.speed = monsterData.speed;
         transform.localScale = monsterData.size;
 

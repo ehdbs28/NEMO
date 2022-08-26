@@ -6,8 +6,8 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance = null;
 
-    private float _damageIncrease = 1f;
-    private float _ammoIncrease = 1f;
+    private float _damageIncrease = 0f;
+    private float _ammoIncrease = 0f;
     private float _healthIncrease = 0f;
     private float _percentageIncrease = 30f;
     private float _speedIncrease = 0f;
@@ -20,10 +20,26 @@ public class PlayerManager : MonoBehaviour
 
     public void UpIncrease(string type, float increase)
     {
-        if (type == "Damage") _damageIncrease *= (1 + (increase / 100));
-        else if (type == "Ammo") _ammoIncrease *= (1 + (increase / 100));
-        else if (type == "Percentage" && _percentageIncrease < 100) _percentageIncrease += increase;
-        else if (type == "Health") _healthIncrease += increase;
-        else if (type == "Speed") _speedIncrease += increase;
+        if (type == "Damage")
+        {
+            _damageIncrease += increase;
+        }
+        else if (type == "Ammo")
+        {
+            _ammoIncrease += increase;
+        }
+        else if (type == "Percentage" && _percentageIncrease < 100)
+        {
+            _percentageIncrease += increase;
+        }
+        else if (type == "Health")
+        {
+            _healthIncrease += increase;
+        }
+        else if (type == "Speed")
+        {
+            _speedIncrease += increase;
+            _speedIncrease = Mathf.Clamp(_speedIncrease, 0, 5);
+        }
     }
 }

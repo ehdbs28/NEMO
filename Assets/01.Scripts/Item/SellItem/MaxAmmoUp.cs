@@ -27,7 +27,7 @@ public class MaxAmmoUp : SellAble
         {
             StartCoroutine(SellSuccess());
             ItemManager.Instance.CoinCount -= _price;
-            PlayerManager.Instance.UpIncrease("Ammo", 20);
+            PlayerManager.Instance.UpIncrease("Ammo", 3);
             GunManager.Instance.CurrentGun.InitSetting();
 
             _price += 5;
