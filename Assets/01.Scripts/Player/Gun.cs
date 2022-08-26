@@ -56,9 +56,9 @@ public class Gun : MonoBehaviour
 
     public void InitSetting()
     {
-        _damage = _gunData.damage * PlayerManager.Instance.DamageIncrease;
+        _damage = Mathf.RoundToInt(_gunData.damage * PlayerManager.Instance.DamageIncrease);
         _remainAmmo = _gunData.startAmmoRemain;
-        _maxAmmo = _gunData.maxCapacity * PlayerManager.Instance.AmmoIncrease;
+        _maxAmmo = Mathf.RoundToInt(_gunData.maxCapacity * PlayerManager.Instance.AmmoIncrease);
         _currentAmmo = _maxAmmo;
     }
 

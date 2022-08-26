@@ -24,11 +24,15 @@ public class Entity : Poolable, IDamage
         }
     }
 
-    public void Heal(float heal)
+    public virtual void Heal(float heal)
     {
         if (!_dead)
         {
             _health += heal;
+            if(_health > _startHealth)
+            {
+                _health = _startHealth;
+            }
         }
     }
 

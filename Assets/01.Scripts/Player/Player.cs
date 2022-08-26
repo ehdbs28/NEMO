@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         if (other.transform.CompareTag("Item"))
         {
             Item item = other.transform.GetComponent<Item>();
-            if(item != null)
+            if (item != null)
             {
                 item.UseItem();
             }
@@ -100,6 +100,26 @@ public class Player : MonoBehaviour
         else if (other.transform.CompareTag("OutCollider"))
         {
             GameManager.Instance.IsShop = false;
+        }
+        else if (other.transform.CompareTag("SellThing"))
+        {
+            SellAble sellAble = other.transform.GetComponent<SellAble>();
+            if (sellAble != null)
+            {
+                sellAble.IsSellAble = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("SellThing"))
+        {
+            SellAble sellAble = other.transform.GetComponent<SellAble>();
+            if (sellAble != null)
+            {
+                sellAble.IsSellAble = false;
+            }
         }
     }
 }
