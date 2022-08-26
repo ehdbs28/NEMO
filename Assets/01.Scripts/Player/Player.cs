@@ -86,5 +86,20 @@ public class Player : MonoBehaviour
                 item.UseItem();
             }
         }
+        else if (other.transform.CompareTag("InCollider"))
+        {
+            if (!GameManager.Instance.IsShop)
+            {
+                int gunNum = Random.Range(0, GunManager.Instance.GunList.Count);
+                Item gunItem = PoolManager.Instance.Pop($"{GunManager.Instance.GunList[gunNum].name.Replace("-", "")}Item") as Item;
+                gunItem.transform.position = new Vector3(-6.49f, 1.494f, -15.522f);
+            }
+
+            GameManager.Instance.IsShop = true;
+        }
+        else if (other.transform.CompareTag("OutCollider"))
+        {
+            GameManager.Instance.IsShop = false;
+        }
     }
 }

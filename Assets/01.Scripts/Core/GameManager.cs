@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     private bool _gameOver = false;
     public bool GameOver { get => _gameOver; set => _gameOver = value; }
 
+    private bool _isShop = false;
+    public bool IsShop { get => _isShop; set => _isShop = value; }
+
+    private Animator _chestAnim;
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -37,11 +42,17 @@ public class GameManager : MonoBehaviour
         PlayerManager.Instance = gameObject.AddComponent<PlayerManager>();
     }
 
+    private void Start()
+    {
+        _chestAnim = GameObject.Find("Chest").GetComponent<Animator>();
+    }
+
     private void Update()
     {
         foreach(GameObject bar in _bars)
         {
             bar.SetActive(MonsterSpawnManager.Instance.IsWaving);
         }
+        _chestAnim.SetBool("IsShop", _isShop);
     }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Platform
   - Enemy
   - Item
+  - InCollider
+  - OutCollider
   layers:
   - Default
   - TransparentFX

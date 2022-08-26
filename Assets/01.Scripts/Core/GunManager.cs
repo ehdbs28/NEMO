@@ -12,6 +12,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Gun _m16;
 
     private List<Gun> _gunList = new List<Gun>();
+    public List<Gun> GunList { get => _gunList; }
 
     private Gun _currentGun;
     public Gun CurrentGun
@@ -29,57 +30,16 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
-        SwapAk47();
+        Swap("AK47");
     }
 
-    private void Update()
+    public void Swap(string type)
     {
-        //test
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            SwapAk47();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SwapScarH();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SwapG36C();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SwapM16();
-        }
-    }
+        if (type == "AK47") _currentGun = _ak47;
+        else if (type == "SCARH") _currentGun = _scarH;
+        else if (type == "G36C") _currentGun = _g36c;
+        else if (type == "M16") _currentGun = _m16;
 
-    public void SwapAk47()
-    {
-        _currentGun = _ak47;
-        GunSwap();
-
-        _currentGun.InitSetting();
-    }
-
-    public void SwapScarH()
-    {
-        _currentGun = _scarH;
-        GunSwap();
-
-        _currentGun.InitSetting();
-    }
-
-    public void SwapG36C()
-    {
-        _currentGun = _g36c;
-        GunSwap();
-
-        _currentGun.InitSetting();
-    }
-
-    public void SwapM16()
-    {
-        _currentGun = _m16;
         GunSwap();
 
         _currentGun.InitSetting();

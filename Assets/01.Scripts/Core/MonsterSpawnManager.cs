@@ -27,7 +27,7 @@ public class MonsterSpawnManager : MonoBehaviour
         if(_monsterList.Count <= 0)
         {
             _isWaving = false;
-            if(Input.GetKeyDown(KeyCode.F) && _isWaving == false)
+            if(Input.GetKeyDown(KeyCode.F) && !_isWaving && !GameManager.Instance.IsShop)
             {
                 SpawnWave();
             }
