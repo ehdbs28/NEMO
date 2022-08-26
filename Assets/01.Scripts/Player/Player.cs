@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
 
         Vector3 dir = new Vector3(x, 0, z);
         dir = transform.TransformDirection(dir);
-        _rigid.position += dir.normalized * _speed * Time.deltaTime;
+        _rigid.position += dir.normalized * (_speed + PlayerManager.Instance.SpeedIncrease) * Time.deltaTime;
     }
 
     private void Jump()
@@ -101,9 +102,18 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.IsShop = false;
         }
-        else if (other.transform.CompareTag("SellThing"))
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.CompareTag("SellThing"))
         {
             SellAble sellAble = other.transform.GetComponent<SellAble>();
+
+            GameObject text = GameObject.Find("Canvas").transform.Find("SellInfoTxt").gameObject;
+            text.SetActive(true);
+            sellAble._infoTxt = text.transform.GetComponent<TextMeshProUGUI>();
+
             if (sellAble != null)
             {
                 sellAble.IsSellAble = true;
@@ -116,6 +126,9 @@ public class Player : MonoBehaviour
         if (other.transform.CompareTag("SellThing"))
         {
             SellAble sellAble = other.transform.GetComponent<SellAble>();
+            GameObject text = GameObject.Find("Canvas").transform.Find("SellInfoTxt").gameObject;
+            text.SetActive(false);
+            sellAble._infoTxt = null;
             if (sellAble != null)
             {
                 sellAble.IsSellAble = false;

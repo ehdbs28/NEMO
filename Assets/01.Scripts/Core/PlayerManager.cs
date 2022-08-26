@@ -10,11 +10,13 @@ public class PlayerManager : MonoBehaviour
     private float _ammoIncrease = 1f;
     private float _healthIncrease = 0f;
     private float _percentageIncrease = 30f;
+    private float _speedIncrease = 0f;
 
     public float DamageIncrease { get => _damageIncrease; }
     public float AmmoIncrease { get => _ammoIncrease; }
     public float PercentageIncrease { get => _percentageIncrease; }
     public float HealthIncrease { get => _healthIncrease; }
+    public float SpeedIncrease { get => _speedIncrease; }
 
     public void UpIncrease(string type, float increase)
     {
@@ -22,5 +24,6 @@ public class PlayerManager : MonoBehaviour
         else if (type == "Ammo") _ammoIncrease *= (1 + (increase / 100));
         else if (type == "Percentage" && _percentageIncrease < 100) _percentageIncrease += increase;
         else if (type == "Health") _healthIncrease += increase;
+        else if (type == "Speed") _speedIncrease += increase;
     }
 }

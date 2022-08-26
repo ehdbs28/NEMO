@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class DamageUp : SellAble
 {
-    private void Start()
-    {
-        SetUp(5, "데미지업");
-    }
+    private int _price = 5;
+    private string _name = "데미지업";
 
     private void Update()
     {
-        _infoTxt.gameObject.SetActive(_isSellAble);
-        ShowInfo();
-        if(_isSellAble && Input.GetKeyDown(KeyCode.E))
+        if(_infoTxt != null)
         {
-            Sell();
+            ShowInfo(_price, _name);
+
+            if (_isSellAble && Input.GetKeyDown(KeyCode.E))
+            {
+                Sell();
+            }
         }
     }
 

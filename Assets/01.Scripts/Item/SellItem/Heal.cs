@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Heal : SellAble
 {
+    private int _price = 15;
+    private string _name = "체력회복";
+
     private PlayerHealth _playerHealth;
 
     private void Start()
     {
         _playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        SetUp(15, "체력회복");
     }
 
     private void Update()
     {
-        _infoTxt.gameObject.SetActive(_isSellAble);
-        ShowInfo();
-        if (_isSellAble && Input.GetKeyDown(KeyCode.E))
+        if (_infoTxt != null)
         {
-            Sell();
+            ShowInfo(_price, _name);
+
+            if (_isSellAble && Input.GetKeyDown(KeyCode.E))
+            {
+                Sell();
+            }
         }
     }
 

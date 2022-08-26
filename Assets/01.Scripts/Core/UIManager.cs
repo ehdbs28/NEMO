@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timeTxt;
     [SerializeField] private TextMeshProUGUI _scoreTxt;
     [SerializeField] private TextMeshProUGUI _waveTxt;
+    [SerializeField] private TextMeshProUGUI _coinTxt;
 
     private int _score = 0;
     private int _second = 0, _minute = 0, _hour = 0;
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        _coinTxt.text = $"{ItemManager.Instance.CoinCount.ToString("D4")}";
         _waveTxt.text = $"F 키를 누르면 웨이브가 시작됩니다.\n다음웨이브:{ MonsterSpawnManager.Instance.Wave + 1}";
         _waveTxt.gameObject.SetActive(MonsterSpawnManager.Instance.IsWaving ? false : true);
         _timeTxt.text = $"{_hour.ToString("D2")}:{_minute.ToString("D2")}:{_second.ToString("D2")}";
@@ -38,6 +40,8 @@ public class UIManager : MonoBehaviour
 
         _player.SetActive(false);
         _gameOverPanel.gameObject.SetActive(true);
+        _gameOverPanel.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = $"점수 : {_score.ToString("D5")}";
+        _gameOverPanel.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = $"시간 : {_hour.ToString("D2")}:{_minute.ToString("D2")}:{_second.ToString("D2")}";
     }
 
     IEnumerator ShowTime()

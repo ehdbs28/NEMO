@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5853177678421375762}
   - component: {fileID: 7391939171113383095}
   - component: {fileID: 4715698490826735741}
+  - component: {fileID: 509188879}
+  - component: {fileID: 509188880}
   m_Layer: 0
   m_Name: HealthUpItem
-  m_TagString: Untagged
+  m_TagString: SellThing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +35,7 @@ Transform:
   - {fileID: 5853177679192479072}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!33 &7391939171113383095
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,6 +86,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &509188879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6517125078608339368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6528831, y: 2.1383157, z: 0.87042236}
+  m_Center: {x: 0.6791274, y: 0.08856385, z: 0.67892075}
+--- !u!114 &509188880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6517125078608339368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753bdbb527c29fe46aa4992e13433214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _infoTxt: {fileID: 0}
 --- !u!1001 &6246514033600377483
 PrefabInstance:
   m_ObjectHideFlags: 0

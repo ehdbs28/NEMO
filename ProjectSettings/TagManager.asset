@@ -9,6 +9,7 @@ TagManager:
   - Item
   - InCollider
   - OutCollider
+  - SellThing
   layers:
   - Default
   - TransparentFX

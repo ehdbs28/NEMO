@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 635114694030939075}
   - component: {fileID: 4575581244633865318}
   - component: {fileID: 1773096295222192300}
+  - component: {fileID: 2056924714}
+  - component: {fileID: 2056924715}
   m_Layer: 0
   m_Name: HealItem
-  m_TagString: Untagged
+  m_TagString: SellThing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +35,7 @@ Transform:
   - {fileID: 635114694024928301}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!33 &4575581244633865318
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,6 +86,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2056924714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259996977455434105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.73102474, y: 2.316599, z: 0.85583305}
+  m_Center: {x: 0.6316898, y: 0.06765059, z: 0.7590914}
+--- !u!114 &2056924715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259996977455434105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9f78a8d3a640f42ba1c95a9c8a07a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _infoTxt: {fileID: 0}
 --- !u!1001 &1106434215232273350
 PrefabInstance:
   m_ObjectHideFlags: 0
