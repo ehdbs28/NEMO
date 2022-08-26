@@ -11,6 +11,6 @@ public class ShowRemainAmmo : MonoBehaviour
     private void Update()
     {
         _currentAmmo.text = $"{GunManager.Instance.CurrentGun.CurrentAmmo}";
-        _remainAmmo.text = $"{GunManager.Instance.CurrentGun.StartAmmo}";
+        _remainAmmo.text = $"{GunManager.Instance.CurrentGun.RemainAmmo}";
     }
 }

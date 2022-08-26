@@ -15,6 +15,7 @@ public class PlayerHealth : Entity
 
     private void Update()
     {
+        _hpSlider.maxValue = _startHealth + PlayerManager.Instance.HealthIncrease;
         _hpSlider.value = _health;
     }
 

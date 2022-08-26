@@ -64,6 +64,7 @@ public class MonsterSpawnManager : MonoBehaviour
         monster.OnDie += () => _monsterList.Remove(monster);
         monster.OnDie += () => UIManager.Instance.AddScore(100);
         monster.OnDie += () => ItemManager.Instance.CreateItem("CoinItem", monster.transform.position, monster.transform.rotation);
+        monster.OnDie += () => ItemManager.Instance.CreateItem("BulletItem", monster.transform.position, monster.transform.rotation);
     }
 
     private void CreateBoss()
@@ -81,5 +82,6 @@ public class MonsterSpawnManager : MonoBehaviour
         boss.OnDie += () => _monsterList.Remove(boss);
         boss.OnDie += () => UIManager.Instance.AddScore(1000);
         boss.OnDie += () => ItemManager.Instance.CreateItem("CoinItem", boss.transform.position, boss.transform.rotation);
+        boss.OnDie += () => ItemManager.Instance.CreateItem("BulletItem", boss.transform.position, boss.transform.rotation);
     }
 }

@@ -54,7 +54,7 @@ public class Hand : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             _gun = GunManager.Instance.CurrentGun;
-            if (_gun.state == Gun.State.Reloading && _gun.StartAmmo <= 0) return;
+            if (_gun.state == Gun.State.Reloading && _gun.RemainAmmo <= 0) return;
 
             _anim.SetBool("IsReloading", true);
             _gun.Reload();

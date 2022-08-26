@@ -25,11 +25,17 @@ public class Gun : MonoBehaviour
 
     private float _lastShotTime;
 
-    private float _startAmmo;
-    public float StartAmmo { get => _startAmmo; }
+    private float _damage;
+    public float Damage { get => _damage; set => _damage = value; }
+
+    private float _remainAmmo;
+    public float RemainAmmo { get => _remainAmmo; set => _remainAmmo = value; }
+
     private float _maxAmmo;
+
     private float _currentAmmo;
     public float CurrentAmmo { get => _currentAmmo; }
+
     private bool _isAiming = false;
     public bool IsAiming { get => _isAiming; set => _isAiming = value; }
 
@@ -38,7 +44,6 @@ public class Gun : MonoBehaviour
         _firePos = transform.Find("FirePos").transform;
         _fxPos = transform.Find("FxPos").transform;
         _line = GetComponent<LineRenderer>();
-        InitSetting();
     }
 
     private void Update()
@@ -51,8 +56,9 @@ public class Gun : MonoBehaviour
 
     public void InitSetting()
     {
-        _startAmmo = _gunData.startAmmoRemain;
-        _maxAmmo = _gunData.maxCapacity;
+        _damage = _gunData.damage * PlayerManager.Instance.DamageIncrease;
+        _remainAmmo = _gunData.startAmmoRemain;
+        _maxAmmo = _gunData.maxCapacity * PlayerManager.Instance.AmmoIncrease;
         _currentAmmo = _maxAmmo;
     }
 
@@ -86,7 +92,7 @@ public class Gun : MonoBehaviour
             Monster monster = hit.transform.GetComponent<Monster>();
             if(monster != null && !monster._dead)
             {
-                monster.OnDamage(GunManager.Instance.CurrentGun._gunData.damage, hitPos, hit.normal);
+                monster.OnDamage(_damage, hitPos, hit.normal);
             }
         }
         else
@@ -102,7 +108,7 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
-        if (_state == State.Empty && _startAmmo > 0)
+        if (_state == State.Empty && _remainAmmo > 0)
         {
             _state = State.Reloading;
         }
@@ -110,15 +116,15 @@ public class Gun : MonoBehaviour
 
     public void ReloadComplete() //Animation Event
     {
-        if(_startAmmo > 0)
+        if(_remainAmmo > 0)
         {
             float decreaseAmmo;
 
-            if (_startAmmo - _maxAmmo >= _maxAmmo) decreaseAmmo = _maxAmmo - _currentAmmo;
-            else decreaseAmmo = _startAmmo - _currentAmmo;
+            if (_remainAmmo >= _maxAmmo) decreaseAmmo = _maxAmmo - _currentAmmo;
+            else decreaseAmmo = _remainAmmo - _currentAmmo;
 
             _currentAmmo += decreaseAmmo;
-            _startAmmo -= decreaseAmmo;
+            _remainAmmo -= decreaseAmmo;
             _state = State.Ready;
         }
     }

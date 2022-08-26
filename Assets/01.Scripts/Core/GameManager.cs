@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance = gameObject.GetComponent<UIManager>();
         MonsterSpawnManager.Instance = gameObject.GetComponent<MonsterSpawnManager>();
         ItemManager.Instance = gameObject.AddComponent<ItemManager>();
+        PlayerManager.Instance = gameObject.AddComponent<PlayerManager>();
     }
 
     private void Update()

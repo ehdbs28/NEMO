@@ -57,24 +57,32 @@ public class GunManager : MonoBehaviour
     {
         _currentGun = _ak47;
         GunSwap();
+
+        _currentGun.InitSetting();
     }
 
     public void SwapScarH()
     {
         _currentGun = _scarH;
         GunSwap();
+
+        _currentGun.InitSetting();
     }
 
     public void SwapG36C()
     {
         _currentGun = _g36c;
         GunSwap();
+
+        _currentGun.InitSetting();
     }
 
     public void SwapM16()
     {
         _currentGun = _m16;
         GunSwap();
+
+        _currentGun.InitSetting();
     }
 
     private void GunSwap()
