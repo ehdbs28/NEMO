@@ -34,7 +34,7 @@ public class Heal : SellAble
         {
             StartCoroutine(SellSuccess());
             ItemManager.Instance.CoinCount -= _price;
-            _playerHealth.Heal(30);
+            _playerHealth.Heal(Mathf.RoundToInt(_playerHealth._startHealth / 10));
         }
         else
         {

@@ -6,7 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance = null;
 
-    private int _coinCount = 9999;
+    private int _coinCount = 0;
     public int CoinCount { get => _coinCount; set => _coinCount = value; }
 
     public void CreateItem(string itemName, Vector3 pos, Quaternion rotation)

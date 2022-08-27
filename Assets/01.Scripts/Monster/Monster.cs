@@ -36,9 +36,9 @@ public class Monster : Entity
 
     public void SetUp(MonsterData monsterData)
     {
-        float increase = gameObject.name == "Boss" ? (MonsterSpawnManager.Instance.Wave / 5) / 10 : MonsterSpawnManager.Instance.Wave / 10;
-        _startHealth = monsterData.health * increase;
-        _damage = monsterData.damage * increase;
+        float increase = gameObject.name == "Boss" ? ((MonsterSpawnManager.Instance.Wave / 5) / 10) * 2 : MonsterSpawnManager.Instance.Wave / 10;
+        _startHealth = monsterData.health * (increase + 1);
+        _damage = monsterData.damage * (increase + 1);
         _navMeshAgent.speed = monsterData.speed;
         transform.localScale = monsterData.size;
 
@@ -96,11 +96,11 @@ public class Monster : Entity
 
     private void OnTriggerStay(Collider other)
     {
-        if(!_dead)
+        if (!_dead)
         {
             Entity attackTarget = other.GetComponent<Entity>();
 
-            if(attackTarget != null && attackTarget == _targetEntity && !attackTarget._dead && !_isAttack)
+            if (attackTarget != null && attackTarget == _targetEntity && !attackTarget._dead && !_isAttack)
             {
                 _isAttack = true;
 

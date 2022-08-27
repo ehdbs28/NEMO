@@ -41,8 +41,15 @@ public class MonsterSpawnManager : MonoBehaviour
         _wave++;
 
         int spawnCount = Mathf.RoundToInt(_wave * 1.5f);
+        int bossSpawnCount = Mathf.RoundToInt((_wave / 5) * 1.3f);
 
-        if(_wave % 5 == 0) { CreateBoss(); }
+        if(_wave % 5 == 0)
+        {
+            for(int i = 0; i < bossSpawnCount; i++)
+            {
+                CreateBoss(); 
+            }
+        }
         for(int i = 0; i < spawnCount; i++)
         {
             CreateMonster();
