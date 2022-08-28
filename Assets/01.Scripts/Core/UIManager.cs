@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
         _timeTxt.text = $"{_hour.ToString("D2")}:{_minute.ToString("D2")}:{_second.ToString("D2")}";
         _scoreTxt.text = $"{_score.ToString("D5")}";
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.GameOver)
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.GameOver && !_settingPanel.gameObject.activeSelf)
         {
             if (!_isSetting)
             {
