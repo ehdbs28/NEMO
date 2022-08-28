@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.GameOver = true;
 
+        AudioManager.Instance.GameOverSound();
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 

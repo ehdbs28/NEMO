@@ -24,6 +24,8 @@ public class PlayerHealth : Entity
     {
         if(_health >= 0 && !_dead)
         {
+            AudioManager.Instance.PlaySFX(GetComponent<AudioSource>(), AudioManager.Instance.Clips["PlayerHurt"]);
+
             StopAllCoroutines();
             StartCoroutine(DamageEffect());
 

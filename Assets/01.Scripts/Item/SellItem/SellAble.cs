@@ -19,6 +19,8 @@ public abstract class SellAble : MonoBehaviour
 
     protected IEnumerator SellSuccess()
     {
+        AudioManager.Instance.ItemSellSound();
+
         _infoTxt.color = Color.green;
         yield return new WaitForSeconds(0.3f);
         _infoTxt.color = Color.yellow;
@@ -26,6 +28,8 @@ public abstract class SellAble : MonoBehaviour
 
     protected IEnumerator SellFail()
     {
+        AudioManager.Instance.ItemSellFailSound();
+
         _infoTxt.color = Color.red;
         yield return new WaitForSeconds(0.3f);
         _infoTxt.color = Color.yellow;

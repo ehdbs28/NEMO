@@ -37,7 +37,6 @@ public class MonsterSpawnManager : MonoBehaviour
     private void SpawnWave()
     {
         _isWaving = true;
-
         _wave++;
 
         int spawnCount = Mathf.RoundToInt(_wave * 1.5f);

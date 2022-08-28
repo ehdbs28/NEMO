@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Poolable> _poolingList;
     [SerializeField] private GameObject[] _bars;
+    public GameObject[] Bars { get => _bars; }
 
     private bool _gameOver = false;
     public bool GameOver { get => _gameOver; set => _gameOver = value; }
@@ -41,10 +42,8 @@ public class GameManager : MonoBehaviour
         MonsterSpawnManager.Instance = gameObject.GetComponent<MonsterSpawnManager>();
         ItemManager.Instance = gameObject.AddComponent<ItemManager>();
         PlayerManager.Instance = gameObject.AddComponent<PlayerManager>();
-    }
+        AudioManager.Instance = gameObject.GetComponent<AudioManager>();
 
-    private void Start()
-    {
         _chestAnim = GameObject.Find("Chest").GetComponent<Animator>();
     }
 

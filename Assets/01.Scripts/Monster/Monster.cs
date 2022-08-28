@@ -104,6 +104,8 @@ public class Monster : Entity
             {
                 _isAttack = true;
 
+                AudioManager.Instance.PlaySFX(GetComponent<AudioSource>(), AudioManager.Instance.Clips["SlimeAttack"]);
+
                 _anim.SetTrigger("IsAttack");
                 _navMeshAgent.isStopped = true;
 

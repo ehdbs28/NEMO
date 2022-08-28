@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
     }
 
     [SerializeField] private GunInfo _gunData;
+
+    private AudioSource _audioSource;
     
     private State _state;
     public State state { get; set; }
@@ -44,6 +46,7 @@ public class Gun : MonoBehaviour
         _firePos = transform.Find("FirePos").transform;
         _fxPos = transform.Find("FxPos").transform;
         _line = GetComponent<LineRenderer>();
+        _audioSource = GameObject.Find("Hands").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -60,6 +63,8 @@ public class Gun : MonoBehaviour
         _remainAmmo = Mathf.RoundToInt(_gunData.startAmmoRemain + PlayerManager.Instance.DamageIncrease);
         _maxAmmo = Mathf.RoundToInt(_gunData.maxCapacity + PlayerManager.Instance.AmmoIncrease);
         _currentAmmo = _maxAmmo;
+
+        AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["GunCock"]);
     }
 
     public void Fire(Action OnShotAnim, LayerMask targetLayer)
@@ -74,6 +79,8 @@ public class Gun : MonoBehaviour
 
     private void Shot(LayerMask targetLayer)
     {
+        AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["GunShot"]);
+
         _currentAmmo--;
 
         CameraManager.Instance.Shake(2, 0.03f);
@@ -118,6 +125,8 @@ public class Gun : MonoBehaviour
     {
         if(_remainAmmo > 0)
         {
+            AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["GunReload"]);
+
             float decreaseAmmo;
 
             if (_remainAmmo >= _maxAmmo) decreaseAmmo = _maxAmmo - _currentAmmo;

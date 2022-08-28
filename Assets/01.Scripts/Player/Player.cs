@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rigid;
 
+    private AudioSource _audioSource;
+
     private float _yRotate, _yRotateMove;
     private float _rotateSpeed = 500.0f;
 
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigid = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()   
@@ -40,6 +43,12 @@ public class Player : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
+        if ((x != 0 || z != 0) && !_audioSource.isPlaying && !_isJump)
+        {
+            _audioSource.volume = 1f;
+            AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["FootStep"]);
+        }
+
         Vector3 dir = new Vector3(x, 0, z);
         dir = transform.TransformDirection(dir);
         _rigid.position += dir.normalized * (_speed + PlayerManager.Instance.SpeedIncrease) * Time.deltaTime;
@@ -49,6 +58,9 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && _jumpCount < _maxJumpCount && !_isJump)
         {
+            _audioSource.volume = 0.5f;
+            AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["Jump"]);
+
             _jumpCount++;
             _isJump = true;
 
@@ -84,13 +96,16 @@ public class Player : MonoBehaviour
             Item item = other.transform.GetComponent<Item>();
             if (item != null)
             {
+                AudioManager.Instance.UseItemSound();
                 item.UseItem();
             }
         }
         else if (other.transform.CompareTag("InCollider"))
         {
-            if (!GameManager.Instance.IsShop)
+            if (!GameManager.Instance.IsShop && other.transform.parent.name == "Award")
             {
+                AudioManager.Instance.ChestAudio();
+
                 int gunNum = Random.Range(0, GunManager.Instance.GunList.Count);
                 Item gunItem = PoolManager.Instance.Pop($"{GunManager.Instance.GunList[gunNum].name.Replace("-", "")}Item") as Item;
                 gunItem.transform.position = new Vector3(-6.49f, 1.494f, -15.522f);
@@ -100,6 +115,8 @@ public class Player : MonoBehaviour
         }
         else if (other.transform.CompareTag("OutCollider"))
         {
+            if (GameManager.Instance.IsShop && other.transform.parent.name == "Award") AudioManager.Instance.ChestAudio();
+
             GameManager.Instance.IsShop = false;
         }
     }
