@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
 
+    [SerializeField] private AudioMixer _master;
+    public AudioMixer Master { get => _master; }
+
     [SerializeField] private AudioMixerGroup _chestGroup;
     [SerializeField] private AudioMixerGroup _itemGroup;
     [SerializeField] private AudioMixerGroup _doorGroup;

@@ -69,7 +69,7 @@ public class Gun : MonoBehaviour
 
     public void Fire(Action OnShotAnim, LayerMask targetLayer)
     {
-        if(_state == State.Ready && Time.time >= _lastShotTime + _gunData.shotDelay && _currentAmmo != 0)
+        if(_state == State.Ready && Time.time >= _lastShotTime + _gunData.shotDelay && _currentAmmo != 0 && !UIManager.Instance.IsSetting)
         {
             _lastShotTime = Time.time;
             Shot(targetLayer);

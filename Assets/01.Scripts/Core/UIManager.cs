@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,9 +14,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreTxt;
     [SerializeField] private TextMeshProUGUI _waveTxt;
     [SerializeField] private TextMeshProUGUI _coinTxt;
+    [SerializeField] private Image _escPanel;
+    [SerializeField] private Image _settingPanel;
+    [SerializeField] private Slider _bgmSlider;
+    [SerializeField] private Slider _sfxSlider;
 
     private int _score = 0;
     private int _second = 0, _minute = 0, _hour = 0;
+
+    private bool _isSetting = false;
+    public bool IsSetting { get => _isSetting; }
 
     private void Start()
     {
@@ -29,6 +37,53 @@ public class UIManager : MonoBehaviour
         _waveTxt.gameObject.SetActive(MonsterSpawnManager.Instance.IsWaving ? false : true);
         _timeTxt.text = $"{_hour.ToString("D2")}:{_minute.ToString("D2")}:{_second.ToString("D2")}";
         _scoreTxt.text = $"{_score.ToString("D5")}";
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.GameOver)
+        {
+            if (!_isSetting)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0;
+            }
+            if (_isSetting)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = 1;
+            }
+            _isSetting = !_isSetting;
+        }
+        _escPanel.gameObject.SetActive(_isSetting);
+
+        AudioSetting();
+    }
+
+    private void AudioSetting()
+    {
+        if (_bgmSlider.value == _bgmSlider.minValue) AudioManager.Instance.Master.SetFloat("BGM", -80);
+        else AudioManager.Instance.Master.SetFloat("BGM", _bgmSlider.value);
+        if (_sfxSlider.value == _sfxSlider.minValue) AudioManager.Instance.Master.SetFloat("SFX", -80);
+        else AudioManager.Instance.Master.SetFloat("SFX", _sfxSlider.value);
+    }
+
+    public void Continue()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
+
+        _isSetting = false;
+    }
+
+    public void Setting(bool value)
+    {
+        _settingPanel.gameObject.SetActive(value);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Title");
     }
 
     public void GameOver()
