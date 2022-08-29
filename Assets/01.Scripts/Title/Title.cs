@@ -11,7 +11,7 @@ public class Title : MonoBehaviour
 
     public void GoStart()
     {
-        SceneManager.LoadScene("Main");
+        SceneLoader.Instance.LoadScene("Main");
     }
 
     public void Exit()
