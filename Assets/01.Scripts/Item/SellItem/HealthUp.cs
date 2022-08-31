@@ -6,6 +6,12 @@ public class HealthUp : SellAble
 {
     private int _price = 5;
     private string _name = "최대체력증가";
+    private PlayerHealth _playerHealth;
+
+    private void Start()
+    {
+        _playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     private void Update()
     {
@@ -28,6 +34,7 @@ public class HealthUp : SellAble
             StartCoroutine(SellSuccess());
             ItemManager.Instance.CoinCount -= _price;
             PlayerManager.Instance.UpIncrease("Health", 10);
+            _playerHealth.HealthUp();
 
             _price += 5;
         }

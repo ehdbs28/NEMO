@@ -63,6 +63,7 @@ public class Gun : MonoBehaviour
         _remainAmmo = Mathf.RoundToInt(_gunData.startAmmoRemain + PlayerManager.Instance.DamageIncrease);
         _maxAmmo = Mathf.RoundToInt(_gunData.maxCapacity + PlayerManager.Instance.AmmoIncrease);
         _currentAmmo = _maxAmmo;
+        _state = State.Ready;
 
         AudioManager.Instance.PlaySFX(_audioSource, AudioManager.Instance.Clips["GunCock"]);
     }

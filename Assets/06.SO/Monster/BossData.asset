@@ -15,4 +15,4 @@ MonoBehaviour:
   health: 500
   damage: 50
   speed: 2
-  size: {x: 7, y: 7, z: 7}
+  size: {x: 4, y: 4, z: 4}

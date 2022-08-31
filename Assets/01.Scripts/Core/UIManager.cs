@@ -84,7 +84,8 @@ public class UIManager : MonoBehaviour
     public void Exit()
     {
         Time.timeScale = 1;
-        SceneLoader.Instance.LoadScene("Title");
+        //SceneLoader.Instance.LoadScene("Title");
+        SceneManager.LoadScene("Title");
     }
 
     public void GameOver()

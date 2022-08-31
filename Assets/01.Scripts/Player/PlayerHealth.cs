@@ -15,9 +15,16 @@ public class PlayerHealth : Entity
 
     private void Update()
     {
-        _startHealth += PlayerManager.Instance.HealthIncrease;
         _hpSlider.maxValue = _startHealth;
         _hpSlider.value = _health;
+    }
+
+    public void HealthUp()
+    {
+        if (!_dead)
+        {
+            _startHealth += PlayerManager.Instance.HealthIncrease;
+        }
     }
 
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
